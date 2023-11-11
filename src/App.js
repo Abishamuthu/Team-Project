@@ -1,44 +1,24 @@
-
-
-
-
-// import logo from './logo.svg';
-import './App.css';
-// import Button from 'react-bootstrap/Button';
-import 'bootstrap/dist/css/bootstrap.min.css';
-
-import Users from './Todos/Users';
-
+import logo from "./logo.svg";
+import "@aws-amplify/ui-react/styles.css";
 import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
-import { useState,useEffect } from 'react';
+  withAuthenticator,
+  Button,
+  Heading,
+  Image,
+  View,
+  Card,
+} from "@aws-amplify/ui-react";
 
-
-function App() {
-  
-
-  
-  const router = createBrowserRouter([
-   
-    {
-      path: "/",
-      element: <Users/>
-    },
-    
-  ]);
-  
+function App({ signOut }) {
   return (
-    <div className="App">
-      <header className="App-header">
-        
-        <RouterProvider router={router} />
-    
-        
-      </header>
-    </div>
+    <View className="App">
+      <Card>
+        <Image src={logo} className="App-logo" alt="logo" />
+        <Heading level={1}>We now have Auth!</Heading>
+      </Card>
+      <Button onClick={signOut}>Sign Out</Button>
+    </View>
   );
 }
 
-export default App;
+export default withAuthenticator(App);
